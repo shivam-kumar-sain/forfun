@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
+    <title>Happy Birthday, Priyanshi! 🎉</title>
+
     <style>
         body {
             text-align: center;
@@ -16,6 +19,7 @@
             height: 100vh;
             overflow: hidden;
         }
+
         .container {
             background: white;
             padding: 30px;
@@ -27,10 +31,12 @@
             z-index: 2;
             overflow: hidden;
         }
+
         h1 {
             color: #ff1493;
             font-size: 36px;
         }
+
         .message {
             display: none;
             font-size: 18px;
@@ -39,10 +45,12 @@
             animation: fadeIn 2s ease-in-out;
             position: relative;
         }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
         button {
             padding: 12px 25px;
             font-size: 16px;
@@ -53,110 +61,99 @@
             border-radius: 8px;
             margin-top: 20px;
         }
+
         button:hover {
             background-color: #ff6347;
         }
-        .gift {
+
+        .surprise {
             display: none;
-            font-size: 18px;
+            font-size: 20px;
             color: #006400;
             margin-top: 20px;
             position: relative;
+            font-weight: bold;
         }
-        .copy-btn {
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            margin-left: 10px;
-            cursor: pointer;
-            border-radius: 5px;
+
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background: red;
+            border-radius: 50%;
+            bottom: -100px;
+            animation: float 4s ease-in-out infinite;
         }
-        .copy-btn:hover {
-            background: #218838;
+
+        .balloon:nth-child(2) { background: blue; left: 30px; animation-delay: 1s; }
+        .balloon:nth-child(3) { background: green; left: 60px; animation-delay: 2s; }
+        .balloon:nth-child(4) { background: yellow; left: 90px; animation-delay: 3s; }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-200px); opacity: 0.8; }
+            100% { transform: translateY(-400px); opacity: 0; }
         }
+
         @media (max-width: 600px) {
             .container {
                 width: 90%;
                 padding: 20px;
             }
+
             h1 {
                 font-size: 28px;
             }
+
             button {
                 font-size: 14px;
             }
         }
-        .star {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: white;
-            border-radius: 50%;
-            opacity: 0;
-            animation: twinkle 6s ease-in-out infinite;
-        }
-        @keyframes twinkle {
-            0% { opacity: 0; transform: translateY(0) scale(0.5); }
-            50% { opacity: 1; transform: translateY(-50px) scale(1.2); }
-            100% { opacity: 0; transform: translateY(-100px) scale(0.5); }
-        }
+
     </style>
+
 </head>
+
 <body>
-    <div id="stars-container"></div>
+
+    <div id="balloon-container"></div>
+
     <div class="container">
-        <h1>🎉 Happy Birthday, ABCD! 🎂</h1>
-        <p>Wishing you an amazing year ahead filled with joy, success, and unforgettable moments! May your dreams turn into reality, and may happiness always follow you. Enjoy your special day to the fullest! 🎁🎈</p>
-        <button onclick="showMessage()">Click for a Surprise</button>
-        <p class="message" id="birthdayMessage">You have received a special gift! 🎉</p>
-        <p class="gift" id="giftMessage">Your exclusive SSC CGL course ID: <strong id="courseId">SSC12345</strong>
-            <button class="copy-btn" onclick="copyToClipboard('courseId')">Copy</button>
-        </p>
+        <h1>🎉 Happy Birthday, Priyanshi! 🎂</h1>
+        <p>Wishing you a day filled with love, laughter, and all the happiness in the world. You are a shining star, and I hope this year brings you endless joy and success! 💖🎈</p>
+        <button onclick="showSurprise()">Click for a Surprise</button>
+        
+        <p class="message" id="birthdayMessage">You have a special surprise! 🎊</p>
+        <p class="surprise" id="surpriseMessage">"Priyanshi, you are truly special. May your life always be filled with love, success, and unforgettable moments. Stay as amazing as you are! ❤️🎂"</p>
     </div>
 
     <script>
-        function showMessage() {
+        function showSurprise() {
             document.getElementById("birthdayMessage").style.display = "block";
-            document.getElementById("giftMessage").style.display = "block";
-            createStarsInsideDiv();
+            document.getElementById("surpriseMessage").style.display = "block";
+            createBalloons();
         }
-        
-        function createStars() {
-            const starsContainer = document.getElementById("stars-container");
-            for (let i = 0; i < 30; i++) {
-                let star = document.createElement("div");
-                star.classList.add("star");
-                star.style.left = Math.random() * 100 + "vw";
-                star.style.top = Math.random() * 100 + "vh";
-                star.style.animationDelay = Math.random() * 6 + "s";
-                starsContainer.appendChild(star);
+
+        function createBalloons() {
+            const balloonContainer = document.getElementById("balloon-container");
+            balloonContainer.innerHTML = ""; 
+
+            for (let i = 0; i < 10; i++) {
+                let balloon = document.createElement("div");
+                balloon.classList.add("balloon");
+                balloon.style.left = Math.random() * 90 + "%";
+                balloon.style.background = getRandomColor();
+                balloon.style.animationDelay = Math.random() * 3 + "s";
+                balloonContainer.appendChild(balloon);
             }
         }
-        
-        function createStarsInsideDiv() {
-            const messageContainer = document.querySelector(".container");
-            for (let i = 0; i < 20; i++) {
-                let star = document.createElement("div");
-                star.classList.add("star");
-                star.style.left = Math.random() * 100 + "%";
-                star.style.top = Math.random() * 100 + "%";
-                star.style.animationDelay = Math.random() * 6 + "s";
-                star.style.position = "absolute";
-                star.style.zIndex = "-1";
-                messageContainer.appendChild(star);
-            }
+
+        function getRandomColor() {
+            const colors = ["#FF5733", "#FFBD33", "#33FF57", "#33FFBD", "#5733FF", "#BD33FF"];
+            return colors[Math.floor(Math.random() * colors.length)];
         }
-        
-        function copyToClipboard(elementId) {
-            var text = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(text).then(function() {
-                alert("Copied: " + text);
-            }, function(err) {
-                console.error("Failed to copy", err);
-            });
-        }
-        createStars();
     </script>
+
 </body>
+
 </html>
