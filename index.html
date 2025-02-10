@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            width: 400px;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+        h1 {
+            color: #ff1493;
+            font-size: 36px;
+        }
+        .message {
+            display: none;
+            font-size: 18px;
+            color: #800080;
+            margin-top: 20px;
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            background-color: #ff4500;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #ff6347;
+        }
+        .gift {
+            display: none;
+            font-size: 18px;
+            color: #006400;
+            margin-top: 20px;
+            position: relative;
+        }
+        .copy-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .copy-btn:hover {
+            background: #218838;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            button {
+                font-size: 14px;
+            }
+        }
+        .star {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 6s ease-in-out infinite;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0; transform: translateY(0) scale(0.5); }
+            50% { opacity: 1; transform: translateY(-50px) scale(1.2); }
+            100% { opacity: 0; transform: translateY(-100px) scale(0.5); }
+        }
+    </style>
+</head>
+<body>
+    <div id="stars-container"></div>
+    <div class="container">
+        <h1>🎉 Happy Birthday, ABCD! 🎂</h1>
+        <p>Wishing you an amazing year ahead filled with joy, success, and unforgettable moments! May your dreams turn into reality, and may happiness always follow you. Enjoy your special day to the fullest! 🎁🎈</p>
+        <button onclick="showMessage()">Click for a Surprise</button>
+        <p class="message" id="birthdayMessage">You have received a special gift! 🎉</p>
+        <p class="gift" id="giftMessage">Your exclusive SSC CGL course ID: <strong id="courseId">SSC12345</strong>
+            <button class="copy-btn" onclick="copyToClipboard('courseId')">Copy</button>
+        </p>
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById("birthdayMessage").style.display = "block";
+            document.getElementById("giftMessage").style.display = "block";
+            createStarsInsideDiv();
+        }
+        
+        function createStars() {
+            const starsContainer = document.getElementById("stars-container");
+            for (let i = 0; i < 30; i++) {
+                let star = document.createElement("div");
+                star.classList.add("star");
+                star.style.left = Math.random() * 100 + "vw";
+                star.style.top = Math.random() * 100 + "vh";
+                star.style.animationDelay = Math.random() * 6 + "s";
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        function createStarsInsideDiv() {
+            const messageContainer = document.querySelector(".container");
+            for (let i = 0; i < 20; i++) {
+                let star = document.createElement("div");
+                star.classList.add("star");
+                star.style.left = Math.random() * 100 + "%";
+                star.style.top = Math.random() * 100 + "%";
+                star.style.animationDelay = Math.random() * 6 + "s";
+                star.style.position = "absolute";
+                star.style.zIndex = "-1";
+                messageContainer.appendChild(star);
+            }
+        }
+        
+        function copyToClipboard(elementId) {
+            var text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(function() {
+                alert("Copied: " + text);
+            }, function(err) {
+                console.error("Failed to copy", err);
+            });
+        }
+        createStars();
+    </script>
+</body>
+</html>
